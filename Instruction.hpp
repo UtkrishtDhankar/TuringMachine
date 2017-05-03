@@ -7,14 +7,17 @@ enum class MoveType
 
 /*
  * Represents an instruction in the Turing Machine. 
- * Tells what to do
+ * Tells what to do. A card has two instructions on it
  */
-class Instruction {
+class Instruction 
+{
 public:
 					Instruction();
 					Instruction(MoveType m, bool o, unsigned int n);
 					Instruction(const Instruction& other);
 					Instruction(Instruction&& other);
+
+	void			operator=(const Instruction& other);
 
 	MoveType 		moveType; 		// How to move the pointer next time around
 	bool 			overwrite;	 	// What to overwrite the current place with
