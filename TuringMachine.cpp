@@ -53,17 +53,12 @@ TuringMachine::TuringMachine(std::vector<Card> cards_in) :
 	currentCard = 0;
 }
 
-TuringMachine::TuringMachine(const TuringMachine& other) :
-	cards(other.cards), memory(other.memory) 
-{
-	// TODO figure out how to copy the position iterator
-	currentCard = other.currentCard;
-}
-
 TuringMachine::TuringMachine(TuringMachine&& other)
 {
-	InitializeMemory();
 	cards = std::move(other.cards);
+	memory = std::move(other.memory);
+	currentPos = other.currentPos;
+	currentCard = other.currentCard;
 }
 
 /*

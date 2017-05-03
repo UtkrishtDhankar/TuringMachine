@@ -29,7 +29,7 @@ private:
 public:
 								TuringMachine();
 								TuringMachine(std::vector<Card> cards);
-								TuringMachine(const TuringMachine& other);
+								TuringMachine(const TuringMachine& other) = 0; // Can't copy this atm
 								TuringMachine(TuringMachine&& other);
 	
 	/*
