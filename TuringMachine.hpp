@@ -36,4 +36,9 @@ public:
 	 * Ticks the simulation forward by executing the next instruction
 	 */
 	void						Tick();
+
+	/*
+	 * Peaks at the memory of the TuringMachine
+	 */
+	const std::list<bool>&		PeakMemory();
 };

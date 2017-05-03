@@ -72,5 +72,10 @@ TuringMachine::TuringMachine(TuringMachine&& other)
 void TuringMachine::Tick()
 {
 	// Get the current card, and execute the appropriate instruction
-	ExecuteInstruction[cards[currentCard].instructions[*currentPos]];
+	ExecuteInstruction(cards[currentCard].instructions[*currentPos]);
+}
+
+const std::list<bool>& TuringMachine::PeakMemory()
+{
+	return memory;
 }

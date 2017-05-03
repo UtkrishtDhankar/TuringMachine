@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Instruction.hpp"
+
 class Card 
 {
 public:
