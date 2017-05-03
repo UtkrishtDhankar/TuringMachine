@@ -14,14 +14,15 @@ enum class MoveType
 class Instruction 
 {
 public:
-					Instruction();
+					Instruction() = default;
 					Instruction(MoveType m, bool o, unsigned int n);
-					Instruction(const Instruction& other);
-					Instruction(Instruction&& other);
+                    // As long as you don't do anything to make it impossible, (const or ref members)
+                    // the compiler will generate copy ctor and copy assignment operator for you, so no need for explicit ones
+                    // Also no need for move ctor unless you semantically want class to be noncopyable,
+                    // or if it contains members that are expensive to copy
+                    // So get rid of that too
 
-	void			operator=(const Instruction& other);
-
-	MoveType 		moveType; 		// How to move the pointer next time around
-	bool 			overwrite;	 	// What to overwrite the current place with
-	unsigned int 	nextCard; 		// What next card to go to
+	MoveType 		moveType = MoveType::STAY; 		// How to move the pointer next time around
+	bool 			overwrite = false;	 	// What to overwrite the current place with
+	unsigned int 	nextCard = 0; 		// What next card to go to
 };

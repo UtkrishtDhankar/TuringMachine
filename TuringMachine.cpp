@@ -3,10 +3,12 @@
 /*
  * Private Functions
  */
-void TuringMachine::InitializeMemory()
-{
-	memory.push_back(false);
-	currentPos = memory.begin();
+
+// by returning the finished vector, we can initialize it properly in the ctor initialization list
+std::list<bool> InitializeMemory(const std::list<bool>& init) {
+    std::list<bool> v(init);
+    v.push_back(false);
+    return v;
 }
 
 void TuringMachine::ExecuteInstruction(const Instruction& i)
@@ -41,22 +43,20 @@ void TuringMachine::ExecuteInstruction(const Instruction& i)
  * Constructors
  */
 TuringMachine::TuringMachine()
+    : memory({}), currentPos(memory.begin())
 {
-	InitializeMemory();
-	currentCard = 0;
 }
 
-TuringMachine::TuringMachine(std::vector<Card> cards_in, std::list<bool> memory_in) :
-	cards(cards_in), memory(memory_in)
+TuringMachine::TuringMachine(std::vector<Card> cards_in, std::list<bool> memory_in)
+	: cards(cards_in), memory(InitializeMemory(memory_in)), currentPos(memory.begin())
 {
-	InitializeMemory();
-	currentCard = 0;
 }
 
 TuringMachine::TuringMachine(TuringMachine&& other)
 {
 	cards = std::move(other.cards);
-	memory = std::move(other.memory);
+    // as far as I could tell, moving a container does not guarantee iterator validity, but swapping them does
+    std::swap(memory, other.memory);
 	currentPos = other.currentPos;
 	currentCard = other.currentCard;
 }
@@ -70,7 +70,7 @@ void TuringMachine::Tick()
 	ExecuteInstruction(cards[currentCard].instructions[*currentPos]);
 }
 
-const std::list<bool>& TuringMachine::PeakMemory()
+const std::list<bool>& TuringMachine::PeekMemory()
 {
 	return memory;
 }

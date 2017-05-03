@@ -5,12 +5,8 @@
 class Card 
 {
 public:
-	Instruction         instructions[2];
+	Instruction         instructions[2] = {}; // direct member initialization to avoid cluttering up constructors, or leaving member uninitialized
 
-						Card();
+						Card() = default; // if direct initializion is done, we can let the compiler generate this ctor for us
 						Card(const Instruction& i0, const Instruction& i1);
-						Card(const Card& other);
-						Card(Card&& other);
-
-	void				operator=(const Card& other);
 };

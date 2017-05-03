@@ -14,12 +14,7 @@ private:
 	std::list<bool>				memory;
 
 	std::list<bool>::iterator	currentPos;
-	unsigned int				currentCard;
-
-	/*
-	 * Initializes the memory of the TuringMachine.
-	 */
-	void						InitializeMemory();
+	unsigned int				currentCard = 0;
 
 	/*
 	 * Executes the given instruction, updating currentPos and currentCard
@@ -28,9 +23,11 @@ private:
 
 public:
 								TuringMachine();
-								TuringMachine(std::vector<Card> cards, std::list<bool> memory);
+                                TuringMachine(std::vector<Card> cards_in, std::list<bool> memory_in);
 								TuringMachine(const TuringMachine& other) = delete; // Can't copy this atm
+								TuringMachine& operator=(const TuringMachine& other) = delete; // Can't copy this atm
 								TuringMachine(TuringMachine&& other);
+								TuringMachine& operator=(TuringMachine&& other); // if you have a move ctor, you should also have a move assignment operator
 	
 	/*
 	 * Ticks the simulation forward by executing the next instruction
@@ -38,7 +35,9 @@ public:
 	void						Tick();
 
 	/*
-	 * Peaks at the memory of the TuringMachine
+	 * Peeks at the memory of the TuringMachine
 	 */
-	const std::list<bool>&		PeakMemory();
+	const std::list<bool>&		PeekMemory();
+
+private:
 };

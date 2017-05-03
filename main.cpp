@@ -78,7 +78,7 @@ int main()
 			tm.Tick();
 
 			std::cout << "...000 ";
-			for (const auto& elem : tm.PeakMemory())
+			for (const auto& elem : tm.PeekMemory())
 			{
 				std::cout << elem;
 			}
