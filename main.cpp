@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 #include "Instruction.hpp"
 #include "Card.hpp"
@@ -30,6 +31,27 @@ Instruction GetInstructionFromUser()
 	return Instruction(moveType, overwrite, nextCard);
 }
 
+std::list<bool> GetMemoryFromUser()
+{
+	std::string buf;
+	std::cin >> buf;
+
+	std::list<bool> mem;
+	for (auto ch : buf)
+	{
+		if (ch == '1')
+		{
+			mem.push_back(true);
+		}
+		else if (ch == '0')
+		{
+			mem.push_back(false);
+		}
+	}
+
+	return mem;
+}
+
 int main()
 {
 	int numCards;
@@ -43,7 +65,9 @@ int main()
 		cards[i] = Card(i0, i1);
 	}
 
-	TuringMachine tm(cards);
+	std::list<bool> memory = GetMemoryFromUser();
+
+	TuringMachine tm(cards, memory);
 
 	int timeToTick;
 	std::cin >> timeToTick;

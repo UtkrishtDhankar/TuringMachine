@@ -46,8 +46,8 @@ TuringMachine::TuringMachine()
 	currentCard = 0;
 }
 
-TuringMachine::TuringMachine(std::vector<Card> cards_in) : 
-	cards(cards_in)
+TuringMachine::TuringMachine(std::vector<Card> cards_in, std::list<bool> memory_in) :
+	cards(cards_in), memory(memory_in)
 {
 	InitializeMemory();
 	currentCard = 0;

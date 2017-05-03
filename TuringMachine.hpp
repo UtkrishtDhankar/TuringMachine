@@ -28,7 +28,7 @@ private:
 
 public:
 								TuringMachine();
-								TuringMachine(std::vector<Card> cards);
+								TuringMachine(std::vector<Card> cards, std::list<bool> memory);
 								TuringMachine(const TuringMachine& other) = delete; // Can't copy this atm
 								TuringMachine(TuringMachine&& other);
 	
