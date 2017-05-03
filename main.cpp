@@ -5,26 +5,63 @@
 #include "Card.hpp"
 #include "TuringMachine.hpp"
 
+Instruction GetInstructionFromUser()
+{
+	char move;
+	bool overwrite;
+	int nextCard;
+
+	std::cin >> move >> overwrite >> nextCard;
+
+	MoveType moveType;
+	if (move == 'l' || move == 'L') 
+	{
+		moveType = MoveType::LEFT;
+	}
+	else if (move == 'r' || move == 'R') 
+	{
+		moveType = MoveType::RIGHT;
+	}
+	else
+	{
+		moveType = MoveType::STAY;
+	}
+
+	return Instruction(moveType, overwrite, nextCard);
+}
+
 int main()
 {
-	Instruction i1(MoveType::RIGHT, true, 0);
-	Instruction i2(MoveType::RIGHT, true, 0);
+	int numCards;
+	std::cin >> numCards;
+	std::vector<Card> cards(numCards);
 
-	Card card(i1, i2);
-	std::vector<Card> cards;
-	cards.push_back(card);
+	for (int i = 0; i < numCards; i++)
+	{
+		Instruction i0 = GetInstructionFromUser();
+		Instruction i1 = GetInstructionFromUser();
+		cards[i] = Card(i0, i1);
+	}
 
 	TuringMachine tm(cards);
 
-	for (int i = 0; i < 10; i++) 
-	{
-		tm.Tick();
-
-		for (const auto& elem : tm.PeakMemory())
+	int timeToTick;
+	std::cin >> timeToTick;
+	
+	while (timeToTick > 0) {
+		for (int i = 0; i < timeToTick; i++) 
 		{
-			std::cout << elem;
+			tm.Tick();
+
+			std::cout << "...000 ";
+			for (const auto& elem : tm.PeakMemory())
+			{
+				std::cout << elem;
+			}
+			std::cout << " 000..." << std::endl;
 		}
-		std::cout << std::endl;
+
+		std::cin >> timeToTick;
 	}
 
 	return 0;
