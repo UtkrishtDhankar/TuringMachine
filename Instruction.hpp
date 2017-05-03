@@ -1,3 +1,5 @@
+#pragma once
+
 enum class MoveType
 {
 	LEFT, // Move left on the next instruction

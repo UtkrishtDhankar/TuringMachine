@@ -1,4 +1,4 @@
-#include "Instruction.hpp"
+#pragma once
 
 class Card 
 {
