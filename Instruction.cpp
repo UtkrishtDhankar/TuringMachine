@@ -1,36 +1,10 @@
 #include "Instruction.hpp"
 
-Instruction::Instruction() 
-{
-	moveType = MoveType::STAY;
-	overwrite = 0;
-	nextCard = 0;
-}
-
 Instruction::Instruction(MoveType m, bool o, unsigned int n) 
+    : moveType(m), overwrite(o), nextCard(n)
+    // When initializing in constructor (as opposed to direct member initialization
+    // like I did elsewhere 
+    // prefer the initialization list instead of ctor body
 {
-	moveType = m;	
-	overwrite = o;
-	nextCard = n;
 }
 
-Instruction::Instruction(const Instruction& other) 
-{
-	moveType = other.moveType;	
-	overwrite = other.overwrite;
-	nextCard = other.nextCard;
-}
-
-Instruction::Instruction(Instruction&& other) 
-{
-	moveType = other.moveType;	
-	overwrite = other.overwrite;
-	nextCard = other.nextCard;
-}
-
-void Instruction::operator=(const Instruction& other)
-{
-	moveType = other.moveType;	
-	overwrite = other.overwrite;
-	nextCard = other.nextCard;
-}
