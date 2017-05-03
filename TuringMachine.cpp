@@ -13,11 +13,11 @@ void TuringMachine::ExecuteInstruction(const Instruction& i)
 {
 	*currentPos = i.overwrite;
 
-	auto oldPos = currentPos;
 	if (i.moveType == MoveType::LEFT) 
 	{
 		// If we don't have the memory, create it
-		if (currentPos == memory.begin()) {
+		if (currentPos == memory.begin()) 
+		{
 			memory.push_front(false);
 		}
 
@@ -28,7 +28,7 @@ void TuringMachine::ExecuteInstruction(const Instruction& i)
 		// If we don't have the memory, create it
 		if (currentPos == --memory.end())
 		{
-			memory.push_front(false);
+			memory.push_back(false);
 		}
 
 		currentPos++;

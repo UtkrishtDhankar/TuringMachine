@@ -7,9 +7,9 @@ Card::Card()
 	// The instructions should be their default selves
 }
 
-Card::Card(unsigned int cardNumber, const Instruction& i0, const Instruction& i1)
+Card::Card(unsigned int cn, const Instruction& i0, const Instruction& i1)
 {
-	cardNumber = cardNumber;
+	cardNumber = cn;
 	instructions[0] = i0;
 	instructions[1] = i1;
 }

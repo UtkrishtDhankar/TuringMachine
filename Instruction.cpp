@@ -1,10 +1,10 @@
-#include "Instruction.cpp"
+#include "Instruction.hpp"
 
 Instruction::Instruction() 
 {
 	moveType = MoveType::STAY;
 	overwrite = 0;
-	nextCard = n;
+	nextCard = 0;
 }
 
 Instruction::Instruction(MoveType m, bool o, unsigned int n) 
@@ -28,7 +28,9 @@ Instruction::Instruction(Instruction&& other)
 	nextCard = other.nextCard;
 }
 
-void Instruction:::operator=(const Instruction& other)
+void Instruction::operator=(const Instruction& other)
 {
-	
+	moveType = other.moveType;	
+	overwrite = other.overwrite;
+	nextCard = other.nextCard;
 }
