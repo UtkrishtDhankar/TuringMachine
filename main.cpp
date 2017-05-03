@@ -10,7 +10,7 @@ int main()
 	Instruction i1(MoveType::RIGHT, true, 0);
 	Instruction i2(MoveType::RIGHT, true, 0);
 
-	Card card(0, i1, i2);
+	Card card(i1, i2);
 	std::vector<Card> cards;
 	cards.push_back(card);
 
